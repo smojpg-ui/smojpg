@@ -14,7 +14,7 @@
   STYLE PASS (2026-10-21): tape, tilt, and the Nº numbering are all CSS
     (nth-of-type + a counter), so the splice block stays plain <figure class="piece">.
     A <figcaption> is optional; if present it shows under the piece and in the lightbox.
-    The three sheets in the hero are borrowed from gallery pieces 5, 1 and 6 by the script.
+    The three sheets in the hero are borrowed from gallery pieces 1, 5 and 6 by the script.
 -->
 <head>
 <meta charset="utf-8" />
@@ -653,11 +653,11 @@
     if(Math.abs(dx) > 50){ swiped = true; show(dx < 0 ? cur + 1 : cur - 1); }
   });
 
-  /* ── hero sheets: lilies, the piano, the eye ── */
+  /* ── hero sheets: the piano, the lilies, the eye ── */
   var stack = document.querySelector('.hero-stack');
   if(stack && imgs.length >= 3){
     var sheets = stack.querySelectorAll('.sheet');
-    [4, 0, 5].forEach(function(n, k){
+    [0, 4, 5].forEach(function(n, k){
       if(!imgs[n]) n = k;
       sheets[k].querySelector('img').src = imgs[n].src;
       sheets[k].addEventListener('click', function(){ open(n); });
