@@ -14,7 +14,7 @@
   STYLE PASS (2026-10-21): tape, tilt, and the Nº numbering are all CSS
     (nth-of-type + a counter), so the splice block stays plain <figure class="piece">.
     A <figcaption> is optional; if present it shows under the piece and in the lightbox.
-    The three sheets in the hero are borrowed from gallery pieces 5, 14 and 6 by the script.
+    The three sheets in the hero are borrowed from gallery pieces 5, 1 and 6 by the script.
 -->
 <head>
 <meta charset="utf-8" />
@@ -144,6 +144,11 @@
     transition:background-size .4s var(--ease), color .25s;
   }
   .bar nav a:hover, .bar nav a.on{color:var(--rose); background-size:100% 1px}
+  @media (max-width:360px){
+    .bar nav{gap:.85rem}
+    .bar nav a{letter-spacing:.06em}
+    .ae .glyph{width:2rem}
+  }
 
   /* ── hero ────────────────────────────────────────── */
   header.hero{
@@ -202,12 +207,17 @@
   .sheet.s1{width:64%; left:0; top:9%; rotate:-7deg; animation-delay:.3s}
   .sheet.s2{width:62%; right:0; bottom:3%; rotate:5deg; animation-delay:.45s}
   .sheet.s3{width:42%; left:30%; top:0; rotate:-1.5deg; z-index:2; animation-delay:.6s}
-  .sheet.s3::before{
+  .sheet.s2::before, .sheet.s3::before{
     content:""; position:absolute; top:-12px; left:50%; width:46%; height:24px;
     translate:-50% 0; rotate:-3deg;
     background:var(--tape-coral);
     clip-path:polygon(0 12%,4% 0,50% 6%,96% 0,100% 14%,97% 50%,100% 88%,95% 100%,50% 94%,4% 100%,0 86%,3% 50%);
     mix-blend-mode:multiply;
+  }
+  .sheet.s2::before{
+    top:12px; left:auto; right:-14px; width:96px;
+    translate:0 0; rotate:40deg;
+    background:var(--tape-rose);
   }
   .hero-stack:hover .s1{rotate:-10deg; translate:-14px -6px}
   .hero-stack:hover .s2{rotate:8deg; translate:14px 8px}
@@ -643,11 +653,11 @@
     if(Math.abs(dx) > 50){ swiped = true; show(dx < 0 ? cur + 1 : cur - 1); }
   });
 
-  /* ── hero sheets: lilies, copa, the eye ── */
+  /* ── hero sheets: lilies, the piano, the eye ── */
   var stack = document.querySelector('.hero-stack');
   if(stack && imgs.length >= 3){
     var sheets = stack.querySelectorAll('.sheet');
-    [4, 13, 5].forEach(function(n, k){
+    [4, 0, 5].forEach(function(n, k){
       if(!imgs[n]) n = k;
       sheets[k].querySelector('img').src = imgs[n].src;
       sheets[k].addEventListener('click', function(){ open(n); });
